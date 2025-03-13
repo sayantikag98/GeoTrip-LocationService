@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public interface LocationService {
-    void saveDriverLocation(SaveDriverLocationRequestDto saveDriverLocationRequestDto);
+    Boolean saveDriverLocation(SaveDriverLocationRequestDto saveDriverLocationRequestDto);
 
     List<DriverLocationDto> findNearbyDrivers(FindNearbyDriverRequestDto findNearbyDriverRequestDto);
 }

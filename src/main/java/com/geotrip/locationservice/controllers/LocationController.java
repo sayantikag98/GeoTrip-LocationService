@@ -7,6 +7,7 @@ import com.geotrip.locationservice.dtos.SaveDriverLocationRequestDto;
 import com.geotrip.locationservice.services.LocationService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -21,16 +22,16 @@ public class LocationController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_DRIVER')")
     public ResponseEntity<Boolean> saveDriverLocation(@RequestBody @Valid SaveDriverLocationRequestDto saveDriverLocationRequestDto) {
-        this.locationService.saveDriverLocation(saveDriverLocationRequestDto);
-        return ResponseEntity.ok(true);
+        Boolean response = this.locationService.saveDriverLocation(saveDriverLocationRequestDto);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/nearby")
+    @PreAuthorize("hasAuthority('ROLE_PASSENGER')")
     public ResponseEntity<List<DriverLocationDto>> getNearbyDrivers(@RequestBody @Valid FindNearbyDriverRequestDto findNearbyDriverRequestDto) {
         List<DriverLocationDto> nearbyDriversList = this.locationService.findNearbyDrivers(findNearbyDriverRequestDto);
         return ResponseEntity.ok(nearbyDriversList);
     }
-
-
 }
