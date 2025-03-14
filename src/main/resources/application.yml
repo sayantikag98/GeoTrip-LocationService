@@ -1,6 +1,6 @@
 spring:
   application:
-    name: LocationService
+    name: LOCATION-SERVICE
 
   datasource:
     url: ${DB_URL}
