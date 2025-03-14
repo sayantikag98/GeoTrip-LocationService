@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.GeoOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -104,7 +105,8 @@ public class RedisGeoSpatialLocationServiceImpl implements LocationService {
     }
 
 
-    //to clean up redis data store
+    //to clean up redis data store every 6 hours at minute 0
+    @Scheduled(cron = "0 0 */6 * * *")
     public void cleanExpiredDrivers() {
         Map<String, String> ttlMap =  hashOps.entries(REDIS_KEY_TTL);
 
