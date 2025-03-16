@@ -1,6 +1,5 @@
 package com.geotrip.locationservice.services;
 
-import com.geotrip.entityservice.models.Role;
 import java.util.Date;
 
 public interface JwtService {

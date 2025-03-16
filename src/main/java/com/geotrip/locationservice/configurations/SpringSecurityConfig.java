@@ -2,7 +2,6 @@ package com.geotrip.locationservice.configurations;
 
 import com.geotrip.locationservice.filters.JwtAuthFilter;
 import com.geotrip.locationservice.filters.WebSocketTokenAuthenticationFilter;
-import com.geotrip.locationservice.services.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +23,7 @@ public class SpringSecurityConfig {
 
     @Bean
     @Order(1)
-    public SecurityFilterChain websocketSecurityFilterChain(HttpSecurity http, JwtService jwtService) throws Exception {
+    public SecurityFilterChain websocketSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher("/ws/**") // Only for WebSocket (SockJS) endpoints
                 .csrf(AbstractHttpConfigurer::disable)

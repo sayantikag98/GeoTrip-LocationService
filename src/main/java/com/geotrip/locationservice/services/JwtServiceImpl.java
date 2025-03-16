@@ -1,6 +1,5 @@
 package com.geotrip.locationservice.services;
 
-import com.geotrip.entityservice.models.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
